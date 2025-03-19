@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+       // HashTable Implementation with Linear Probing
+class HashTable {
+    constructor(size = 10) {
+        this.table = new Array(size).fill(null);
+        this.size = 0;
+    }
+
+    // private function to convert key to index
+    _setKey(key) {
+        return key % this.table.length;
+    }
+
+    // Insert value using linear probing
+    insert(value) {
+        let index = this._setKey(value);
+
+        // Linear probing: Find next available slot
+        while (this.table[index] !== null) {
+            index = (index + 1) % this.table.length; // Move to the next index
+        }
+
+        this.table[index] = value;
+        this.size++;
+    }
+
+    //Retrieve value (used for demonstration)
+    get(key) {
+        let index = this._setKey(key);
+        let start = index; // Save initial position to avoid infinite loop
+
+        // Search for the value using linear probing
+        while (this.table[index] !== null) {
+            if (this.table[index] === key) {
+                console.log( this.table[index]);
+                return; // Value found
+            }
+            index = (index + 1) % this.table.length;
+            if (index === start) break; // Stop if looped back
+        }
+        return undefined; // Value not found
+    }
+
+    // Search for a value in the table
+    search(value) {
+        let index = this._setKey(value);
+        let start = index;
+
+        while (this.table[index] !== null) {
+            if (this.table[index] === value) {
+                console.log(`The value ${value} is found at index: ${index}`);
+                return;
+            }
+            index = (index + 1) % this.table.length;
+            if (index === start) break;
+        }
+        console.log(`Value ${value} not found.`);
+    }
+
+    // Delete a value from the hash table
+    delete(value) {
+        let index = this._setKey(value);
+        let start = index;
+
+        while (this.table[index] !== null) {
+            if (this.table[index] === value) {
+                this.table[index] = "DELETED"; // Placeholder to prevent breaking the search chain
+                this.size--;
+                console.log(`Deleted ${value} from index ${index}`);
+                return;
+            }
+            index = (index + 1) % this.table.length;
+            if (index === start) break;
+        }
+        console.log(`Value ${value} not found for deletion.`);
+    }
+
+    // Display the hash table
+    printTable() {
+        console.log(this.table);
+    }
+}
+
+// Example Usage
+const hashExample = new HashTable();
+
+// Insert values
+hashExample.insert(100);
+hashExample.insert(87);
+hashExample.insert(86);
+hashExample.insert(12);
+hashExample.insert(9);
+hashExample.insert(32); // Will be placed in next available slot
+
+// Show table after insertion
+hashExample.printTable();
+
+// Search values
+hashExample.search(87);
+hashExample.search(10); // Not found
+//get a value
+hashExample.get(1);
+// Delete a value
+hashExample.delete(12);
+
+// Show table after deletion
+hashExample.printTable();
+
+
+
+// Objects (Key-Value Pair / Dictionary)
+
+let person={
+    name:"john",
+    age:30,
+    city:"new york"
+};
+console.log(person.name);
+console.log(person['age']);
+console.log(person);
+person.country="usa";
+delete person.city;
+console.log(`deleted city:${person.city}`);
+
+console.log(person);
+
+
+//sets
+let u=new Set([1,2,3,3,5,7]);
+console.log(u);
+u.add(6);
+u.delete(2);
+console.log(u);
+console.log(u.has(3));
+console.log(u.size);
+
+
+//map
+let userMap = new Map();
+userMap.set("name", "Alice");
+userMap.set(1, "One");
+userMap.set(true, "Boolean Key");
+
+console.log(userMap.get("name")); // "Alice"
+console.log(userMap.has(1)); // true
+
+userMap.delete(true);
+console.log(userMap.size); // 2
+
+// Iterate over Map
+for (let [key, value] of userMap) {
+    console.log(key, value);
+}
+
+//stack
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+
+    push(element) {
+        this.items.push(element);
+    }
+
+    pop() {
+        return this.items.pop();
+    }
+
+    peek() {
+        return this.items[this.items.length - 1];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+}
+
+let stack = new Stack();
+stack.push(10);
+stack.push(20);
+console.log(stack.pop()); // 20
+console.log(stack.peek()); // 10
+console.log(stack.isEmpty())
+console.log(stack)
+
+//queue
+class Queue {
+    constructor() {
+        this.items = [];
+    }
+
+    enqueue(element) {
+        this.items.push(element);
+    }
+
+    dequeue() {
+        return this.items.shift();
+    }
+
+    front() {
+        return this.items[0];
+    }
+}
+
+let queue = new Queue();
+queue.enqueue("A");
+queue.enqueue("B");
+console.log(queue.dequeue()); // "A"
+console.log(queue.front()); // "B"
+console.log(queue)
+
+
+ </script>
+ </body>
+ </html>

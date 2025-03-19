@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //call stack
+        console.log("one");
+        console.log("two");
+        function logThree(){
+            console.log("Three");
+        }
+        function logThreeandFour(){
+            logThree();
+            console.log("Four");
+        }
+        logThreeandFour();
+
+        //2.
+        Promise.resolve()
+        .then(()=>console.log(1));//micro
+
+        setTimeout(()=>console.log(2),10);//macro task
+
+        queueMicrotask(()=>{
+            console.log(3);
+            queueMicrotask(()=>console.log(4))
+        });
+        
+        console.log(5);//synchronous
+        //5 1 3 4 2
+
+
+        // main event loop
+        console.log("start");
+        setTimeout(()=>{
+            console.log("set timeout callback");
+        },0);
+        Promise.resolve().then(()=>{
+            console.log("promise resolved");
+        });
+        console.log("end");
+       
+        //Blocking the Main Thread
+        // while(true)
+        // {
+        //     console.log('Blocking...')
+        // }
+
+
+        //delayed execution of setTimeout
+        // console.log("Start");
+        // setTimeout(() => console.log("Inside setTimeout"), 1000);
+        // for (let i = 0; i < 1e9; i++) {} // Long loop
+        // console.log("End");
+
+
+        //Priority of Microtasks Over Callbacks
+        setTimeout(()=>console.log("settimeouut"),0);
+        Promise.resolve().then(()=>console.log("promise"));
+        console.log("end");
+
+
+        //callback hell
+        setTimeout(()=>{
+            console.log("step1");
+            setTimeout(()=>{
+                console.log("step2");
+                setTimeout(()=>{
+                    console.log("step3");
+                },1000);
+            },1000);
+        },1000);
+
+        setInterval(() => {
+        console.log("setInterval Callback (Macrotask)");
+        }, 1000);
+
+        setImmediate(() => {
+            console.log("setImmediate Callback (Macrotask - Node.js)");
+        });
+
+        //heap
+        function createUser() {
+        return {
+            name: "Shreya",
+            age: 22
+        };
+        }
+
+            let user1 = createUser();  // Object stored in Heap
+            let user2 = user1;         // Both variables point to the same Heap object
+
+            console.log(user1.name);   // "Shreya"
+            console.log(user2.name);   // "Shreya"
+
+            user1.name = "Aditi";      // Modifies the same Heap object
+
+            console.log(user2.name);   // "Aditi" (because both reference the same object)
+
+
+    </script>
+</body>
+</html>

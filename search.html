@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ // Javascript code to linearly search x in arr[].
+
+function search(arr, n, x)
+{
+    for (let i = 0; i < n; i++)
+        if (arr[i] == x)
+            return i;
+    return -1;
+}
+
+// Driver code
+
+    let arr = [ 2, 3, 4, 10, 40 ];
+    let x = 10;
+    let n = arr.length;
+
+    // Function call
+    let result = search(arr, n, x);
+    (result == -1)
+        ? console.log("Element is not present in array")
+        : console.log("Element is present at index " + (result+1));
+
+// Program to implement iterative Binary Search
+
+// A iterative binary search function. It returns
+// location of x in given array arr[l..r] is present,
+// otherwise -1
+
+function binarySearch(arr, x)
+{
+    let low = 0;
+    let high = arr.length - 1;
+    let mid;
+    while (high >= low) {
+        mid = low + Math.floor((high - low) / 2);
+
+        // If the element is present at the middle
+        // itself
+        if (arr[mid] == x)
+            return mid;
+
+        // If element is smaller than mid, then
+        // it can only be present in left subarray
+        if (arr[mid] > x)
+            high = mid - 1;
+
+        // Else the element can only be present
+        // in right subarray
+        else
+            low = mid + 1;
+    }
+
+    // We reach here when element is not
+    // present in array
+    return -1;
+}
+
+arr = new Array(2, 3, 4, 10, 40);
+x = 3;
+n = arr.length;
+result = binarySearch(arr, x);
+if (result == -1)
+    console.log("Element is not present in array")
+    else
+    {
+        console.log("Element is present at index "
+                    + (result+1));
+    }
+
+// JavaScript Program for Bubble Sort
+
+function bubbleSort(arr, n) {
+    
+    for(let i = 0;i < n; i++){
+        
+        for(let j = 0 ; j < n - i -1; j++){
+            if( arr[j] > arr[j+1]){
+                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+                
+            }
+        }
+        
+       
+    }
+    return arr;
+}
+
+let a = [2, 1, 3, 4];
+a = bubbleSort(a, 4);
+console.log(a);
+
+// JavaScript Program for selectionSort
+
+function selectionSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        // Swap arr[i] and arr[minIndex]
+        let temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+    return arr;
+}
+console.log(selectionSort(arr));
+
+// JavaScript Program for InsertionsSort
+function insertionSort(arr) {
+    let n = arr.length;
+    for (let i = 1; i < n; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+
+// Example usage:
+
+console.log(insertionSort(arr));
+
+// JavaScript Program for Quick Sort
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const pivot = arr[arr.length - 1];
+    const left = [];
+    const right = [];
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+// Example usage:
+
+console.log(quickSort(arr));
+
+// JavaScript Program for Merge Sort
+function mergeSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let result = [];
+    let i = 0;
+    let j = 0;
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i]);
+            i++;
+        } else {
+            result.push(right[j]);
+            j++;
+        }
+    }
+    return result.concat(left.slice(i), right.slice(j));
+}
+// Example usage
+
+console.log(mergeSort(arr)); 
+
+
+
+
+    </script>
+</body>
+</html>

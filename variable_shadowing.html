@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = "Outer"; // Global scope
+
+        function example() {
+            let name = "Inner"; // Shadows the global variable
+            console.log(name); // Output: "Inner"
+        }
+
+        example();
+        console.log(name); // Output: "Outer"
+        //var Shadowing let (Allowed)
+        let a = 10;
+
+        function test() {
+            var a = 20; // Shadows the outer `a`
+            console.log(a); // Output: 20
+        }
+
+        test();
+        console.log(a); // Output: 10
+
+        // let or const Shadowing var (Allowed)
+
+        var b = 30;
+
+        function test() {
+            let b = 40; // Shadows the outer `b`
+            console.log(b); // Output: 40
+        }
+
+
+        test();
+        console.log(b); // Output: 30
+
+//splice() method
+//Removing Elements Using splice()
+let numbers = [10, 20, 30, 40, 50];
+let removed = numbers.splice(2, 2); // Remove 2 elements from index 2
+
+console.log(numbers); // [10, 20, 50]
+console.log(removed); // [30, 40]
+
+
+// Adding Elements Using splice()
+let fruits = ["Apple", "Banana", "Mango"];
+fruits.splice(1, 0, "Orange", "Grapes"); // Insert at index 1 without deleting
+
+console.log(fruits); // ["Apple", "Orange", "Grapes", "Banana", "Mango"]
+
+
+//Replacing Elements Using splice()
+
+let colors = ["Red", "Green", "Blue"];
+colors.splice(1, 1, "Yellow"); // Replace 1 element at index 1
+
+console.log(colors); // ["Red", "Yellow", "Blue"]
+
+
+// Removing All Elements from an Index
+
+let arr = [1, 2, 3, 4, 5, 6];
+arr.splice(2); // Removes all elements from index 2 onwards
+
+console.log(arr); // [1, 2]
+
+//slice method
+let arr1 = [1, 2, 3, 4, 5];
+
+let spliced = arr1.splice(1, 2); // Removes from index 1, two elements
+console.log(arr1); // [1, 4, 5]
+console.log(spliced); // [2, 3]
+
+let sliced = arr1.slice(1, 3); // Extracts elements from index 1 to 2 (not modifying)
+console.log(arr1); // [1, 4, 5] (unchanged)
+console.log(sliced); // [4, 5]
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced js sheet</title>
+</head>
+<body>
+    <script>
+
+        //1. lexical scoping
+
+        let globalVar = "I am global";
+
+        function outer() {
+            let outerVar = "I am from outer";
+
+            function inner() {
+                let innerVar = "I am from inner";
+                console.log(globalVar); // Found in global scope
+                console.log(outerVar);  // Found in outer function scope
+                console.log(innerVar);  //  Found in inner function scope
+            }
+
+            inner();
+            }
+
+        outer();
+
+        //2.. Hoisting
+        //function hoisting
+        sayHello(); // Works due to hoisting
+        function sayHello() {
+            console.log("Hello, World!");
+        }
+
+        //var hoisting
+        console.log(myVar); //  Undefined (not an error, but no value assigned yet)
+        var myVar = 10;
+        console.log(myVar); // 10
+
+        //let and const hoisting
+        console.log(myLet); //  ReferenceError: Cannot access 'myLet' before initialization
+        let myLet = 20;
+        console.log(myLet); // 20
+
+        //function expression
+        greet(); //  TypeError: greet is not a function
+        var greet = function () {
+            console.log("Hello!");
+        };
+
+        //arrow functtion
+        console.log(myFunc); //  TypeError
+        const myFunc = () => console.log("Hello!");
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

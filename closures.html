@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // closures
+        function init(){
+            var name='Mozilla';
+            function displayname(){
+                console.log(name);
+            }
+            name='harry';
+            return displayname;
+        }
+        let c=init()
+        c()
+
+        //2. closures
+
+        function returnFunc(){
+            const x=()=>{
+                let a=1
+                console.log(a)
+                const y=()=>{
+                    console.log(a)
+                    const z=()=>{
+                        console.log(a)
+                    
+                }
+                z()
+            }
+            a=99
+            y()
+        }
+        return x
+        }
+        let a=returnFunc()
+        a()
+
+        //memoization
+        //Optimizing API Calls (Avoiding Duplicate Network Requests)
+        function createApi(){
+            let cache={};
+            return async function fetchuserdata(userid) {
+                if(cache[userid]){
+                    console.log("fetching from cache", userid);
+                    return cache[userid];
+                }
+                console.log("fetching from api",userid);
+                cache[userid]= fetch(`https://jsonplaceholder.typicode.com/users/${userid}`).then(response=>response.json());
+                return cache[userid]
+                
+            };
+        }
+        const g=createApi();
+        g(1).then(console.log);// Fetches from API
+        g(1).then(console.log);// Fetches from cache (no API call)
+
+        // Speeding Up Recursion (Fibonacci)
+        function fib(){
+            let cache={};
+            return function fib(n){
+                if (n in cache)return cache[n];
+                if(n<=1) return n;
+
+                cache[n]=fib(n-1)+fib(n-2);
+                return cache[n];
+            };
+        }
+
+        const f=fib();
+        console.log(f(10));
+        console.log(f(8));
+        console.log(f(10));
+
+
+
+        //tabulization
+        //Stock Price Prediction (Finding Max Profit)
+
+        function maxprofit(prices){
+            let min=Infinity, max=0;
+            for(let price of prices){
+                min=Math.min(min,price);
+                max=Math.max(max,price-min);
+
+            }
+            return max;
+        }
+        console.log(maxprofit([7,1,5,3,6,4]));
+
+        //Text Auto-Correction (Spell Checker)
+
+        function spellchecker(dictionary){
+            let table=new Set(dictionary);
+            return function checkword(word){
+                return table.has(word)?"correct":"incorrect";
+            };
+        }
+
+        const checkspelling=spellchecker(["hello","word","javascript"]);
+
+        console.log(checkspelling("hello"));
+        console.log(checkspelling("helo"));
+
+    </script>
+</body>
+</html>
