@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent-container div{
+            border:2px solid black;
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent-container">
+        <div id="a">Div A</div>
+        <div>No ID Div</div>
+        <div id="b">Div B</div>
+        <div>No ID Div</div>
+        <div id="c">Div C</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    let hoveredId = null;
+
+     
+    document.querySelectorAll(".parent-container").forEach(div => {
+        div.addEventListener("mouseover", (event) => {
+
+            hoveredId = event.target.id;
+        });
+
+        div.addEventListener("mouseleave", () => {
+            hoveredId = null;
+        });
+    });
+
+     
+    document.addEventListener("keydown", (event) => {
+        if (!hoveredId) {
+           // console.log(2);
+            console.log(null);
+            
+        }
+
+        const isCtrlPressed = event.ctrlKey;
+        if (isCtrlPressed && event.key.toLowerCase() === hoveredId) {
+            console.log(hoveredId);
+        } else {
+           // console.log(1);
+            console.log(null);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

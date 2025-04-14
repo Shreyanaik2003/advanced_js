@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="event.css">
 </head>
 <body>
-    
+    <button id="btn1" onclick="console.log('Hello')">Click me</button>
+
+    <button id="btn2" ondblclick="console.log('button was clicked 2'); ">Click me 2 times</button>
+
+    <div > This is a box</div>
+
+    <button id="mode"> Change Mode</button>
+
+    <input type="text" id="textbox" placeholder="type something">
+    <p id="output"></p>
+
+    <input type="text" id="textbox1" placeholder="type something">
+    <p id="output1"></p>
+
+    <button id="mybutton">Hover over me</button>
+
+    <img id="myimg" alt="image" />
+
+    <form id="form">
+        <input type="text" id="username" placeholder="enter username">
+        <button type="submit" >submit</button>
+    </form>
+    <p id="message"></p>
+
+    <button id="backToTop" style="display: none;position: fixed;bottom: 20px; right: 20px;">Top</button>
+
+    <input type="password" id="password" placeholder="enter password">
+    <p id="hint" style="display: none; color: gray;">Must be at least 8 characters long</p>
+
+
+<script src="event.js"></script>
 </body>
 </html>

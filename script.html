@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <script defer>
+        function myfun(){
+            document.getElementById("gfg").innerHTML="Geeks for Geeks";
+        }
+
+        document.getElementById("dc").addEventListener("dblclick",function(){
+            this.style.background=this.style.background==="blue"?"orange" :"blue";
+        });
+
+    </script>
+    <!-- click -->
+    <div>
+        <button id="btn">Click me</button>
+    </div>
+
+    <button onclick="document.getElementById('demo').innerHTML=Date()">The time is?</button>
+    <p id="demo"></p>
+
+
+    <button onclick="this.innerHTML=Date()">The time is</button>
+
+    <button onclick="myfun()">geeks</button>
+    <p id="gfg"></p>
+    
+    <!-- double click -->
+     <div id="dc" style="background: orange;">double click</div>
+</body>
+</html>
